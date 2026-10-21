@@ -1,18 +1,33 @@
 #include "raylib.h"
 
-#define WIDTH 1200
-#define HEIGHT 800
+#define WIDTH 800
+#define HEIGHT 600
 
 int main(void) {
     InitWindow(WIDTH, HEIGHT, "Raylib Application");
     SetTargetFPS(60);
-    
+
+    Image image = LoadImage("resources/komaru.png");
+    Texture2D texture = LoadTextureFromImage(image);
+    UnloadImage(image);
+
+    Shader shader = LoadShader(0, "resources/blur.fs");
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
             ClearBackground(RAYWHITE);
+
+            BeginShaderMode(shader);
+                DrawTexture(texture, 0, 0, WHITE);
+            EndShaderMode();
+
         EndDrawing();
+
     }
+
+    UnloadShader(shader);
+    UnloadTexture(texture);
 
     CloseWindow();
 
