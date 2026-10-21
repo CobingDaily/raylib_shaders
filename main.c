@@ -11,7 +11,7 @@ int main(void) {
     Texture2D texture = LoadTextureFromImage(image);
     UnloadImage(image);
 
-    Shader shader = LoadShader(0, "resources/blur.fs");
+    Shader shader = LoadShader(0, "resources/h_reflect.fs");
 
     while (!WindowShouldClose())
     {
